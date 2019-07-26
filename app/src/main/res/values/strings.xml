@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">SerBan</string>
+    <string name="title_activity_maps_seban">Map</string>
 </resources>

@@ -21,7 +21,7 @@ import kotlinx.android.synthetic.main.maps_seban_activity.*
 class MapsActivity : AppCompatActivity(), OnMapReadyCallback, GoogleMap.OnMarkerClickListener {
     override fun onMarkerClick(p0: Marker?) = false
 
-
+    private val buttonState = 1
     private lateinit var mMap: GoogleMap
     private lateinit var fusedLocationProviderClient: FusedLocationProviderClient
     private lateinit var lastLocation: Location
@@ -43,6 +43,27 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback, GoogleMap.OnMarker
         findService.setOnClickListener {
             mMap.mapType = GoogleMap.MAP_TYPE_NORMAL
         }
+
+        bikeSelect.setOnClickListener {
+            if (buttonState % 2 == 0) {
+                bikeSelect.setBackgroundColor(resources.getColor(R.color.white))
+                carSelect.setBackgroundColor(resources.getColor(R.color.colorPrimary))
+
+            } else {
+                bikeSelect.setBackgroundColor(resources.getColor(R.color.colorPrimary))
+                carSelect.setBackgroundColor(resources.getColor(R.color.white))
+            }
+        }
+        carSelect.setOnClickListener {
+            if (buttonState % 2 == 0) {
+                bikeSelect.setBackgroundColor(resources.getColor(R.color.colorPrimary))
+                carSelect.setBackgroundColor(resources.getColor(R.color.white))
+
+            } else {
+                bikeSelect.setBackgroundColor(resources.getColor(R.color.white))
+                carSelect.setBackgroundColor(resources.getColor(R.color.colorPrimary))
+            }
+        }
     }
 
     override fun onMapReady(googleMap: GoogleMap) {
@@ -51,16 +72,18 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback, GoogleMap.OnMarker
         mMap.uiSettings.isZoomControlsEnabled = true
         mMap.setOnMarkerClickListener(this)
         settingUpMaps()
-        // Add a marker in Sydney and move the camera
-//        val sarkom = LatLng(-6.1647626, 106.7627832)
-//        mMap.addMarker(MarkerOptions().position(sarkom).title("Sarkom Hoho"))
-//        mMap.moveCamera(CameraUpdateFactory.newLatLng(sarkom))
-//        mMap.mapType = GoogleMap.MAP_TYPE_NORMAL
-//        val markerOptions = MarkerOptions().position(sarkom)
-//        markerOptions.icon(BitmapDescriptorFactory.fromBitmap(
-//            BitmapFactory.decodeResource(resources, R.mipmap.ic_mobil)
-//        ))
-//        mMap.addMarker(markerOptions.title("Sarkom"))
+//         Add a marker in Sydney and move the camera
+        val sarkom = LatLng(-6.1647626, 106.7627832)
+        mMap.addMarker(MarkerOptions().position(sarkom).title("Sarkom Hoho"))
+        mMap.moveCamera(CameraUpdateFactory.newLatLng(sarkom))
+        mMap.mapType = GoogleMap.MAP_TYPE_NORMAL
+        val markerOptions = MarkerOptions().position(sarkom)
+        markerOptions.icon(
+            BitmapDescriptorFactory.fromBitmap(
+                BitmapFactory.decodeResource(resources, R.mipmap.ic_launcher_round)
+            )
+        )
+        mMap.addMarker(markerOptions.title("Sarkom"))
     }
 
     private fun settingUpMaps() {
@@ -86,6 +109,7 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback, GoogleMap.OnMarker
         }
     }
 
+    //
     fun placeMarkerInMaps(loc: LatLng) {
         val markerOptions = MarkerOptions().position(loc)
         markerOptions.icon(
