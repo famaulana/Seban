@@ -22,12 +22,12 @@ class MainActivity : AppCompatActivity() {
                 return@OnNavigationItemSelectedListener true
             }
             R.id.navigation_chat -> {
-                val fragment = ProfileFragment()
+                val fragment = ChatFragment()
                 addFragment(fragment)
                 return@OnNavigationItemSelectedListener true
             }
             R.id.navigation_profile -> {
-                val fragment = ChatFragment()
+                val fragment = ProfileFragment()
                 addFragment(fragment)
                 return@OnNavigationItemSelectedListener true
             }
