@@ -47,6 +47,7 @@
                android:id="@+id/imageView"/>
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/close"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             app:srcCompat="@drawable/close"
@@ -57,7 +58,7 @@
             android:layout_marginEnd="8dp"
             app:layout_constraintStart_toStartOf="parent"
             android:layout_marginStart="8dp"
-            app:fabSize="mini"/>
+            app:fabSize="mini" tools:ignore="VectorDrawableCompat"/>
 
     <TextView
             android:layout_width="wrap_content"

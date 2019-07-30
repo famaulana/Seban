@@ -4,11 +4,12 @@ import android.content.Intent
 import android.os.Bundle
 import android.os.Handler
 import androidx.appcompat.app.AppCompatActivity
+import kotlinx.android.synthetic.main.loading.*
 
 class LoadingActivity : AppCompatActivity() {
 
     private var mDelayHandler: Handler? = null
-    private val SPLASH_DELAY: Long = 3000
+    private val SPLASH_DELAY: Long = 5000
 
     internal val mRunnable: Runnable = Runnable {
         if (!isFinishing) {
@@ -28,6 +29,10 @@ class LoadingActivity : AppCompatActivity() {
 
         //Navigate with delay
         mDelayHandler!!.postDelayed(mRunnable, SPLASH_DELAY)
+
+        close.setOnClickListener {
+            onBackPressed()
+        }
     }
 
     public override fun onDestroy() {
