@@ -14,6 +14,7 @@
     <Button android:layout_width="50dp" android:layout_height="30dp"
             android:background="@drawable/button_veichel"
             android:focusable="true"
+            android:text="car"
             android:layout_alignParentEnd="true"
             android:layout_marginEnd="75dp"
             android:layout_marginTop="33dp"
@@ -28,6 +29,7 @@
             android:layout_alignParentTop="true"
             android:id="@+id/bikeSelect"
             android:rotation="180"
+            android:text="bike"
             android:focusableInTouchMode="true"
     />
 
