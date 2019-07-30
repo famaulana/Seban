@@ -1,4 +1,17 @@
 <resources>
     <string name="app_name">SerBan</string>
     <string name="title_activity_maps_seban">Map</string>
+
+    <string-array name="brand">
+        <item>Toyota</item>
+        <item>Honda</item>
+    </string-array>
+    <string-array name="Type">
+        <item>Avanza</item>
+        <item>Yaris</item>
+    </string-array>
+    <string-array name="TypeService">
+        <item>Service Engine</item>
+        <item>Service Tire</item>
+    </string-array>
 </resources>
