@@ -4,7 +4,6 @@ import android.os.Bundle
 import android.widget.FrameLayout
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
-import com.android.serban.Fragment.ChatFragment
 import com.android.serban.Fragment.HomeFragment
 import com.android.serban.Fragment.ProfileFragment
 import com.google.android.material.bottomnavigation.BottomNavigationView
@@ -18,11 +17,6 @@ class MainActivity : AppCompatActivity() {
         when (item.itemId) {
             R.id.navigation_home -> {
                 val fragment = HomeFragment()
-                addFragment(fragment)
-                return@OnNavigationItemSelectedListener true
-            }
-            R.id.navigation_chat -> {
-                val fragment = ChatFragment()
                 addFragment(fragment)
                 return@OnNavigationItemSelectedListener true
             }
