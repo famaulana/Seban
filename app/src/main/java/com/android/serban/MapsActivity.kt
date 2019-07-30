@@ -1,5 +1,6 @@
 package com.android.serban
 
+import android.content.Intent
 import android.content.pm.PackageManager
 import android.graphics.BitmapFactory
 import android.location.Location
@@ -63,6 +64,10 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback, GoogleMap.OnMarker
                 bikeSelect.setBackgroundColor(resources.getColor(R.color.white))
                 carSelect.setBackgroundColor(resources.getColor(R.color.colorPrimary))
             }
+        }
+        findService.setOnClickListener {
+            val intent = Intent(this@MapsActivity, LoadingActivity::class.java)
+            startActivity(intent)
         }
     }
 
