@@ -20,11 +20,13 @@ class Login : AppCompatActivity() {
     private val RC_SIGN_IN = 7
     private lateinit var mGoogleSignIn: GoogleSignInClient
     private lateinit var fAuth: FirebaseAuth
+    private lateinit var helperPref : PrefHelper
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.login)
 
+        helperPref = PrefHelper(this)
         fAuth = FirebaseAuth.getInstance()
         val gso = GoogleSignInOptions.Builder(
             GoogleSignInOptions.DEFAULT_SIGN_IN
