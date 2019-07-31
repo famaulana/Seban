@@ -32,7 +32,7 @@
         <activity
                 android:name=".MapsActivity"
                 android:label="@string/title_activity_maps_seban"/>
-        <activity android:name=".MainActivity">
+        <activity android:name=".Login">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
 
@@ -43,6 +43,9 @@
         <activity android:name=".FindService"/>
         <activity android:name=".LoadingActivity"/>
         <activity android:name=".EditProfile"/>
+        <activity android:name=".MainActivity"/>
+        <activity android:name=".Register"/>
+
     </application>
 
 </manifest>
