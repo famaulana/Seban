@@ -25,6 +25,7 @@
             android:textColorHint="#ffff"
             android:background="@drawable/lengkung"
             android:layout_marginBottom="20dp"
+            android:inputType="textEmailAddress"
     />
     <EditText
             android:id="@+id/et_password1"
@@ -63,7 +64,7 @@
             android:id="@+id/tv_signup"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Already have account? Sign Up"
+            android:text="Don't have an account? Sign Up"
             android:textColor="#ffff"
             android:textSize="15sp"
             android:textAlignment="center"
