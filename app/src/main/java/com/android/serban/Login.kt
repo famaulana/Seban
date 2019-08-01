@@ -96,7 +96,7 @@ class Login : AppCompatActivity() {
     private fun updateUI(user: FirebaseUser?) {
         if (user != null) {
             Toast.makeText(
-                this, "Welcome ${fAuth.currentUser!!.displayName}",
+                this, "Welcome",
                 Toast.LENGTH_SHORT
             ).show()
             startActivity(Intent(this, MainActivity::class.java))

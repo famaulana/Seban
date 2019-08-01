@@ -49,13 +49,13 @@ class Register : AppCompatActivity() {
     }
 
     fun simpanToFireBase(username: String, password: String, telp: String) {
-        val uidUser = helperPref.getUID()
+        val uidUser = fAuth.uid
         val counterId = helperPref.getCounterId()
         dbRef = FirebaseDatabase.getInstance().getReference("user/$uidUser")
-
-        dbRef.child("$counterId/username").setValue(username)
-        dbRef.child("$counterId/password").setValue(password)
-        dbRef.child("$counterId/telp").setValue(telp)
+        dbRef.child("id").setValue(uidUser)
+        dbRef.child("username").setValue(username)
+        dbRef.child("password").setValue(password)
+        dbRef.child("telp").setValue(telp)
 
         Toast.makeText(
             this, "Data Successful added",
