@@ -1,40 +1,60 @@
 package com.android.serban
 
+import android.Manifest
+import android.app.Activity
 import android.content.Intent
+import android.content.pm.PackageManager
+import android.graphics.Bitmap
+import android.net.Uri
+import android.os.Build
 import android.os.Bundle
+import android.os.storage.StorageManager
+import android.provider.MediaStore
+import android.util.Log
+import android.view.View
+import android.webkit.MimeTypeMap
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.content.ContextCompat
+import com.bumptech.glide.Glide
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
+import com.google.firebase.storage.FirebaseStorage
+import com.google.firebase.storage.StorageReference
 import kotlinx.android.synthetic.main.login.*
 import kotlinx.android.synthetic.main.signup.*
+import java.io.IOException
+import java.util.*
 
 class Register : AppCompatActivity() {
     lateinit var dbRef: DatabaseReference
     lateinit var helperPref: PrefHelper
+    val REQUEST_CODE_IMAGE = 10002
+    val PERMISSION_RC = 10003
+    var value = 0.0
+    lateinit var filePathImage: Uri
     lateinit var fAuth: FirebaseAuth
+    lateinit var storageReference: StorageReference
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.signup)
         fAuth = FirebaseAuth.getInstance()
-
+        helperPref = PrefHelper(this)
+        storageReference = FirebaseStorage.getInstance().reference
 
         btn_signup.setOnClickListener {
+            var name = et_nama.text.toString()
+            var username = et_username2.text.toString()
+            var phone = et_phone.text.toString()
             var email = et_email.text.toString()
             var password = et_password2.text.toString()
-            var username = et_username2.text.toString()
-            var telp = et_phone.text.toString()
-
-            helperPref = PrefHelper(this)
-            if (email.isNotEmpty() || password.isNotEmpty() || username.isNotEmpty() || telp.isNotEmpty() ||
-                !email.equals("") || !password.equals("") || !username.equals("")  || !telp.equals("")
-                || et_email.length() == 6 || et_password2.length() == 6 || et_username2.length() == 6 || et_phone.length() == 6
+            if (username.isNotEmpty() || username.isNotEmpty() || phone.isNotEmpty() || email.isNotEmpty() || password.isNotEmpty()
             ) {
                 fAuth.createUserWithEmailAndPassword(email, password)
                     .addOnCompleteListener {
                         if (it.isSuccessful) {
-                            simpanToFireBase(username, password, telp)
+                            simpanToFirebase(name, username, email, password, phone)
                             Toast.makeText(this, "Register Berhasil!", Toast.LENGTH_SHORT).show()
                             onBackPressed()
                         } else {
@@ -42,26 +62,105 @@ class Register : AppCompatActivity() {
                         }
                     }
             } else {
-                Toast.makeText(this, "Email dan password harus diisi!", Toast.LENGTH_SHORT).show()
+                Toast.makeText(this, "There's some empty input!", Toast.LENGTH_SHORT).show()
             }
         }
+        uploud.setOnClickListener {
+            when {
+                (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) -> {
+                    if (ContextCompat.checkSelfPermission(
+                            this,
+                            Manifest.permission.READ_EXTERNAL_STORAGE
+                        )
+                        != PackageManager.PERMISSION_GRANTED
+                    ) {
+                        requestPermissions(
+                            arrayOf(
+                                Manifest.permission.READ_EXTERNAL_STORAGE
+                            ), PERMISSION_RC
+                        )
+                    } else {
+                        imageChooser()
+                    }
+                }
+                else -> {
+                    imageChooser()
+                }
+            }
+        }
+    }
+
+    private fun imageChooser() {
+        val intent = Intent().apply {
+            type = "image/*"
+            action = Intent.ACTION_GET_CONTENT
+        }
+        startActivityForResult(
+            Intent.createChooser(intent, "Select Image"),
+            REQUEST_CODE_IMAGE
+        )
+    }
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+        if (resultCode != Activity.RESULT_OK) {
+            return
+        }
+        when (requestCode) {
+            REQUEST_CODE_IMAGE -> {
+                filePathImage = data?.data!!
+                try {
+                    val bitmap: Bitmap = MediaStore
+                        .Images.Media.getBitmap(
+                        this.contentResolver, filePathImage
+                    )
+                    Glide.with(this).load(bitmap)
+                        .override(250, 250)
+                        .centerCrop().into(uploud)
+                } catch (x: IOException) {
+                    x.printStackTrace()
+                }
+            }
+        }
+    }
+
+    fun simpanToFirebase(name: String, username: String, email: String, password: String, phone: String) {
+        val uidUser = fAuth.currentUser?.uid
+        val uid = helperPref.getUID()
+        val nameXXX = UUID.randomUUID().toString()
+        val storageRef: StorageReference = storageReference
+            .child("img/$uid/$nameXXX.${GetFileExtension(filePathImage)}")
+        storageRef.putFile(filePathImage).addOnSuccessListener {
+            storageRef.downloadUrl.addOnSuccessListener {
+                dbRef = FirebaseDatabase.getInstance().getReference("user/$uidUser")
+                dbRef.child("/id").setValue(uidUser)
+                dbRef.child("/name").setValue(name)
+                dbRef.child("/username").setValue(username)
+                dbRef.child("/email").setValue(email)
+                dbRef.child("/password").setValue(password)
+                dbRef.child("/phone").setValue(phone)
+                dbRef.child("/img").setValue(it.toString())
+            }
+            Toast.makeText(
+                this,
+                "Success Upload",
+                Toast.LENGTH_SHORT
+            ).show()
+            progressReg.visibility = View.GONE
+        }.addOnFailureListener {
+            Log.e("TAG_ERROR", it.message)
+        }.addOnProgressListener { taskSnapshot ->
+            value = (100.0 * taskSnapshot
+                .bytesTransferred / taskSnapshot.totalByteCount)
+            progressReg.visibility = View.VISIBLE
+        }
+        startActivity(Intent(this, Login::class.java))
 
     }
 
-    fun simpanToFireBase(username: String, password: String, telp: String) {
-        val uidUser = fAuth.uid
-        val counterId = helperPref.getCounterId()
-        dbRef = FirebaseDatabase.getInstance().getReference("user/$uidUser")
-        dbRef.child("id").setValue(uidUser)
-        dbRef.child("username").setValue(username)
-        dbRef.child("password").setValue(password)
-        dbRef.child("telp").setValue(telp)
-
-        Toast.makeText(
-            this, "Data Successful added",
-            Toast.LENGTH_SHORT
-        ).show()
-        helperPref.saveCounterId(counterId + 1)
-        onBackPressed()
+    fun GetFileExtension(uri: Uri): String? {
+        val contentResolver = this.contentResolver
+        val mimeTypeMap = MimeTypeMap.getSingleton()
+        return mimeTypeMap.getExtensionFromMimeType(contentResolver.getType(uri))
     }
 }

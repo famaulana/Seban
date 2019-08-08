@@ -14,6 +14,7 @@
             android:elevation="2dp">
 
         <de.hdodenhof.circleimageview.CircleImageView
+                android:id="@+id/ava1"
                 android:src="@drawable/profile"
                 android:layout_gravity="center"
                 android:paddingStart="10dp"
@@ -28,6 +29,7 @@
                 android:orientation="vertical">
 
             <TextView
+                    android:id="@+id/tv_name"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Farhan Agung Maulana"
