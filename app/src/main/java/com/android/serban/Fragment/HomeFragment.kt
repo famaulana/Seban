@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import com.android.serban.EngineService
 import com.android.serban.MapsActivity
 import com.android.serban.PrefHelper
 import com.android.serban.R
@@ -23,7 +24,6 @@ class HomeFragment : Fragment() {
         return inflater.inflate(R.layout.home, container, false)
     }
     lateinit var fAuth: FirebaseAuth
-    lateinit var dbRef: DatabaseReference
     lateinit var preferences: PrefHelper
     lateinit var storageReference: StorageReference
     lateinit var firebaseStorage: FirebaseStorage
@@ -57,7 +57,13 @@ class HomeFragment : Fragment() {
 
         ln_home_serviceTambal.setOnClickListener {
             startActivity(Intent(activity!!, MapsActivity::class.java))
+
         }
+        ll_service_engine_home.setOnClickListener {
+            startActivity(Intent(activity!!, EngineService::class.java))
+
+        }
+
     }
 
     companion object {
