@@ -1,7 +1,9 @@
 <resources>
     <string name="app_name">SerBan</string>
     <string name="title_activity_maps_seban">Map</string>
-
+    <string name="places_api">
+        AIzaSyDqdjnLBn8xJWo4qZh7JYRDQzte-pED_9g
+    </string>
     <string-array name="brand">
         <item>Toyota</item>
         <item>Honda</item>

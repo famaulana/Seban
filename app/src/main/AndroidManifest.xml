@@ -24,7 +24,7 @@
         <activity
                 android:name=".MapsActivity"
                 android:label="@string/title_activity_maps_seban"/>
-        <activity android:name=".Login">
+        <activity android:name=".Splash">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
 
@@ -37,6 +37,7 @@
         <activity android:name=".MainActivity"/>
         <activity android:name=".Register"/>
         <activity android:name=".EngineService"/>
+        <activity android:name=".Login"/>
     </application>
 
 </manifest>

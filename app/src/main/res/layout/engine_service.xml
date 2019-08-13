@@ -6,24 +6,30 @@
                 android:orientation="vertical"
                 android:background="#f6f6f6">
 
-    <EditText
-            android:id="@+id/et_search"
-            android:drawableStart="@drawable/place"
-            android:hint="Search your location"
-            android:paddingStart="72dp"
-            android:textColor="#B1BCBE"
-            android:layout_width="350dp"
+    <fragment android:id="@+id/autocomplete_fragment"
+              android:layout_width="match_parent"
+              android:layout_height="wrap_content"
+              android:name="com.google.android.libraries.places.widget.AutocompleteSupportFragment"
+    />
 
-            android:layout_height="wrap_content"
-            android:layout_alignParentEnd="true"
-            android:layout_marginEnd="30dp"
-            android:layout_alignParentBottom="true"
-            android:layout_marginBottom="653dp"
-            android:layout_marginTop="32dp"
-            android:layout_alignParentTop="true"
-            android:layout_alignParentStart="true"
-            android:layout_marginStart="30dp"
-            android:background="@drawable/border"/>
+    <!--<EditText-->
+            <!--android:id="@+id/et_search"-->
+            <!--android:drawableStart="@drawable/place"-->
+            <!--android:hint="Search your location"-->
+            <!--android:paddingStart="72dp"-->
+            <!--android:textColor="#B1BCBE"-->
+            <!--android:layout_width="350dp"-->
+
+            <!--android:layout_height="wrap_content"-->
+            <!--android:layout_alignParentEnd="true"-->
+            <!--android:layout_marginEnd="30dp"-->
+            <!--android:layout_alignParentBottom="true"-->
+            <!--android:layout_marginBottom="653dp"-->
+            <!--android:layout_marginTop="32dp"-->
+            <!--android:layout_alignParentTop="true"-->
+            <!--android:layout_alignParentStart="true"-->
+            <!--android:layout_marginStart="30dp"-->
+            <!--android:background="@drawable/border"/>-->
 
     <Button
             android:layout_width="100dp"
