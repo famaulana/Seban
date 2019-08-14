@@ -1,5 +1,6 @@
 package com.android.serban
 
+import android.content.Intent
 import android.content.pm.PackageManager
 import android.location.Location
 import android.os.Build
@@ -77,13 +78,17 @@ class FindService : AppCompatActivity(), OnMapReadyCallback {
             fusedLocationProviderClient = LocationServices.getFusedLocationProviderClient(this)
             fusedLocationProviderClient.requestLocationUpdates(locationRequest, locationCallback, Looper.myLooper())
         }
-       menu.setOnNavigationItemSelectedListener { item ->
-           when(item.itemId){
-               R.id.action_bike -> nearByPlace("bengkel")
-               R.id.action_car -> nearByPlace("car_repair")
-           }
-           true
-       }
+//       menu.setOnNavigationItemSelectedListener { item ->
+//           when(item.itemId){
+//               R.id.action_bike -> nearByPlace("bengkel")
+//               R.id.action_car -> nearByPlace("car_repair")
+//           }
+//           true
+//       }
+
+        chat_message.setOnClickListener {
+            startActivity(Intent(this, Chat::class.java))
+        }
     }
     private fun nearByPlace(typePlace: String){
 
@@ -94,10 +99,10 @@ class FindService : AppCompatActivity(), OnMapReadyCallback {
             .enqueue(object : Callback<MyPlaces>{
                 override fun onResponse(call: Call<MyPlaces>, response: Response<MyPlaces>) {
                     currentPlace = response.body()!!
-                    if (response!!.isSuccessful)
+                    if (response.isSuccessful)
                     {
 
-                        for (i in 0 until response!!.body()!!.results!!.size)
+                        for (i in 0 until response.body()!!.results!!.size)
                         {
                             val markerOptions = MarkerOptions()
                             val googlePlaces = response.body()!!.results!![i]
@@ -118,9 +123,9 @@ class FindService : AppCompatActivity(), OnMapReadyCallback {
 
                             markerOptions.snippet(i.toString())
 
-                            mMap!!.addMarker(markerOptions)
-                            mMap!!.moveCamera(CameraUpdateFactory.newLatLng(latLng))
-                            mMap!!.animateCamera(CameraUpdateFactory.zoomTo(15f))
+                            mMap.addMarker(markerOptions)
+                            mMap.moveCamera(CameraUpdateFactory.newLatLng(latLng))
+                            mMap.animateCamera(CameraUpdateFactory.zoomTo(15f))
 
 
                         }
@@ -130,7 +135,7 @@ class FindService : AppCompatActivity(), OnMapReadyCallback {
                 }
 
                 override fun onFailure(call: Call<MyPlaces>, t: Throwable) {
-                Toast.makeText(baseContext, ""+t!!.message,Toast.LENGTH_SHORT).show()
+                    Toast.makeText(baseContext, "" + t.message, Toast.LENGTH_SHORT).show()
                 }
 
             })
@@ -152,7 +157,7 @@ class FindService : AppCompatActivity(), OnMapReadyCallback {
     private fun buildLocationCallback() {
         locationCallback = object : LocationCallback() {
             override fun onLocationResult(p0: LocationResult?) {
-                mLastLocation = p0!!.locations.get(p0!!.locations.size - 1)
+                mLastLocation = p0!!.locations.get(p0.locations.size - 1)
 
                 if (mMarker != null) {
                     mMarker!!.remove()
@@ -165,10 +170,10 @@ class FindService : AppCompatActivity(), OnMapReadyCallback {
                     .position(latLng)
                     .title("Your position")
                     .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_GREEN))
-                mMarker = mMap!!.addMarker(markerOptions)
+                mMarker = mMap.addMarker(markerOptions)
 
-                mMap!!.moveCamera(CameraUpdateFactory.newLatLng(latLng))
-                mMap!!.animateCamera(CameraUpdateFactory.zoomTo(11f))
+                mMap.moveCamera(CameraUpdateFactory.newLatLng(latLng))
+                mMap.animateCamera(CameraUpdateFactory.zoomTo(11f))
             }
         }
     }
@@ -222,7 +227,7 @@ class FindService : AppCompatActivity(), OnMapReadyCallback {
 
                             fusedLocationProviderClient = LocationServices.getFusedLocationProviderClient(this)
                             fusedLocationProviderClient.requestLocationUpdates(locationRequest, locationCallback, Looper.myLooper())
-                            mMap!!.isMyLocationEnabled = true
+                            mMap.isMyLocationEnabled = true
                         }
                 } else {
                     Toast.makeText(this, "Permission Denied", Toast.LENGTH_SHORT).show()
@@ -245,11 +250,11 @@ class FindService : AppCompatActivity(), OnMapReadyCallback {
                     android.Manifest.permission.ACCESS_FINE_LOCATION
                 ) == PackageManager.PERMISSION_GRANTED
             ) {
-                mMap!!.isMyLocationEnabled = true
+                mMap.isMyLocationEnabled = true
             }
         }
         else
-            mMap!!.isMyLocationEnabled = true
+            mMap.isMyLocationEnabled = true
 
         mMap.uiSettings.isZoomControlsEnabled= true
     }

@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:orientation="horizontal"
+              android:layout_width="match_parent"
+              android:layout_marginTop="5dp"
+              android:layout_marginBottom="5dp"
+              android:layout_height="wrap_content">
+
+    <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/cardChat_imageUser"
+            android:layout_width="35dp"
+            android:layout_height="35dp"
+            android:src="@drawable/profile"/>
+
+    <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:gravity="center_vertical"
+            android:layout_marginStart="10dp"
+    >
+
+        <TextView
+                android:id="@+id/cardChat_textChat"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="0"
+                android:textAppearance="?android:attr/textAppearanceSmall"
+        />
+        <TextView
+                android:id="@+id/cardChat_textMessage"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="7dp"
+                android:textSize="16sp"
+                android:textColor="@android:color/black"
+                android:background="@android:color/white"
+                android:textAppearance="?android:attr/textAppearanceLarge"/>
+
+        <ImageView
+                android:id="@+id/cardChat_imageMessage"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:adjustViewBounds="true"
+                android:background="@color/colorPrimary"
+                android:scaleType="fitCenter"/>
+
+    </LinearLayout>
+
+</LinearLayout>
