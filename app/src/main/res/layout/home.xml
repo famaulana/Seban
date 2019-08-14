@@ -119,78 +119,128 @@
 
     </RelativeLayout>
 
-    <LinearLayout
-            android:id="@+id/ln_home_serviceTambal"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:background="@drawable/header_user"
-            android:orientation="vertical">
+    <ScrollView android:layout_width="match_parent" android:layout_height="wrap_content">
 
-        <ImageView
-                android:layout_width="match_parent"
-                android:layout_height="100dp"
-                android:src="@drawable/background"
-                android:scaleType="centerCrop"/>
 
         <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:padding="15dp">
+                android:orientation="vertical">
 
-            <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Service Tambal Ban"
-                    android:textColor="@android:color/black"
-                    android:textStyle="bold"/>
-
-            <TextView
+            <LinearLayout
+                    android:id="@+id/ln_home_serviceTambal"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="5dp"
-                    android:text="Go To Service >"/>
+                    android:layout_marginTop="10dp"
+                    android:background="@drawable/header_user"
+                    android:orientation="vertical">
 
-        </LinearLayout>
+                <ImageView
+                        android:layout_width="match_parent"
+                        android:layout_height="100dp"
+                        android:src="@drawable/background"
+                        android:scaleType="centerCrop"/>
 
-    </LinearLayout>
+                <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:padding="15dp">
 
-    <LinearLayout
-            android:id="@+id/ll_service_engine_home"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:background="@drawable/header_user"
-            android:orientation="vertical">
+                    <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Service Tambal Ban"
+                            android:textColor="@android:color/black"
+                            android:textStyle="bold"/>
 
-        <ImageView
-                android:layout_width="match_parent"
-                android:layout_height="100dp"
-                android:src="@drawable/background"
-                android:scaleType="centerCrop"/>
+                    <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="5dp"
+                            android:text="Go To Service >"/>
 
-        <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:padding="15dp">
+                </LinearLayout>
 
-            <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Service Engine"
-                    android:textColor="@android:color/black"
-                    android:textStyle="bold"/>
+            </LinearLayout>
 
-            <TextView
+            <LinearLayout
+                    android:id="@+id/ll_service_engine_home"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="5dp"
-                    android:text="Go To Service >"/>
+                    android:layout_marginTop="10dp"
+                    android:background="@drawable/header_user"
+                    android:orientation="vertical">
+
+                <ImageView
+                        android:layout_width="match_parent"
+                        android:layout_height="100dp"
+                        android:src="@drawable/background"
+                        android:scaleType="centerCrop"/>
+
+                <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:padding="15dp">
+
+                    <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Service Engine"
+                            android:textColor="@android:color/black"
+                            android:textStyle="bold"/>
+
+                    <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="5dp"
+                            android:text="Go To Service >"/>
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <LinearLayout
+                    android:id="@+id/ll_find_order_home"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:visibility="invisible"
+                    android:background="@drawable/header_user"
+                    android:orientation="vertical">
+
+                <ImageView
+                        android:layout_width="match_parent"
+                        android:layout_height="100dp"
+                        android:src="@drawable/background"
+                        android:scaleType="centerCrop"/>
+
+                <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:padding="15dp">
+
+                    <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Find Order"
+                            android:textColor="@android:color/black"
+                            android:textStyle="bold"/>
+
+                    <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="5dp"
+                            android:text="Go Find>"/>
+
+                </LinearLayout>
+
+            </LinearLayout>
 
         </LinearLayout>
+    </ScrollView>
 
-    </LinearLayout>
 
 </LinearLayout>
