@@ -1,5 +1,6 @@
 package com.android.serban
 
+import android.content.Intent
 import android.content.pm.PackageManager
 import android.location.Location
 import android.os.Build
@@ -85,6 +86,10 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback, GoogleMap.OnMarker
                 R.id.action_car -> nearByPlace("car_repair")
             }
             true
+        }
+        findService.setOnClickListener {
+            val intent = Intent(this@MapsActivity, LoadingActivity::class.java)
+            startActivity(intent)
         }
     }
 

@@ -66,6 +66,7 @@
                     android:background="@android:color/darker_gray"/>
 
             <TextView
+                    android:id="@+id/btn_cancel"
                     android:layout_width="match_parent"
                     android:layout_height="35dp"
                     android:text="Cancel Orders"
