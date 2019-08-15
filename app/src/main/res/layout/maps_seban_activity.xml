@@ -2,35 +2,51 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
                 xmlns:tools="http://schemas.android.com/tools"
                 android:layout_width="match_parent" android:layout_height="match_parent"
-                tools:context=".MapsActivity">
+                xmlns:app="http://schemas.android.com/apk/res-auto"
+                tools:context=".MapsActivity"
+>
     <fragment
             xmlns:android="http://schemas.android.com/apk/res/android"
+            xmlns:map="http://schemas.android.com/apk/res-auto"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:id="@+id/map"
             android:name="com.google.android.gms.maps.SupportMapFragment"
-            android:focusableInTouchMode="true"/>
-
-    <Button android:layout_width="50dp" android:layout_height="30dp"
-            android:background="@drawable/button_veichel"
-            android:focusable="true"
-            android:text="car"
-            android:layout_alignParentEnd="true"
-            android:layout_marginEnd="75dp"
-            android:layout_marginTop="33dp"
-            android:layout_alignParentTop="true"
-            android:id="@+id/carSelect"
-    />
-    <Button android:layout_width="50dp" android:layout_height="30dp"
-            android:background="@drawable/button_veichel"
-            android:layout_alignParentEnd="true"
-            android:layout_marginEnd="27dp"
-            android:layout_marginTop="33dp"
-            android:layout_alignParentTop="true"
-            android:id="@+id/bikeSelect"
-            android:rotation="180"
-            android:text="bike"
             android:focusableInTouchMode="true"
+            map:cameraZoom="18"/>
+
+    <com.google.android.material.bottomnavigation.BottomNavigationView
+            android:layout_width="136dp"
+            android:id="@+id/menu"
+            android:layout_height="wrap_content"
+            app:menu="@menu/bottom_menu"
+            android:background="#ffffff"
+            android:layout_alignParentBottom="true"
+            android:layout_marginBottom="632dp"
+            android:layout_alignParentEnd="true"
+            android:layout_marginEnd="14dp"
+            android:layout_marginTop="18dp"
+            android:layout_alignParentTop="true"/>
+
+    <!--<Button android:layout_width="381dp" android:layout_height="79dp"-->
+    <!--android:focusable="true"-->
+    <!--app:menu="@menu/bottom_menu"-->
+    <!--android:layout_alignParentEnd="true"-->
+    <!--android:layout_marginEnd="31dp"-->
+    <!--android:layout_marginTop="27dp"-->
+    <!--android:layout_alignParentTop="true"-->
+    <!--android:id="@+id/carSelect"-->
+    <!--/>-->
+    <!--<Button android:layout_width="50dp" android:layout_height="30dp"-->
+    <!--android:background="@drawable/button_veichel"-->
+    <!--android:layout_alignParentEnd="true"-->
+    <!--android:layout_marginEnd="27dp"-->
+    <!--android:layout_marginTop="33dp"-->
+    <!--android:layout_alignParentTop="true"-->
+    <!--android:id="@+id/bikeSelect"-->
+    <!--android:rotation="180"-->
+    <!--android:text="bike"-->
+    <!--android:focusableInTouchMode="true"-->
     />
 
     <Button android:layout_width="wrap_content"
