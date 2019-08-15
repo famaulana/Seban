@@ -11,7 +11,7 @@
     <item
             android:id="@+id/action_car"
             android:enabled="true"
-            android:title="car"
+            android:title="Car"
             android:icon="@drawable/mobil"
             app:showAsAction="ifRoom"/>
 
