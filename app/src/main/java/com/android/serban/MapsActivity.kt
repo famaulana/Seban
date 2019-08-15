@@ -64,10 +64,21 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback, GoogleMap.OnMarker
         //init service
         mService = Common.googleApiService
 
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+            if (checkLocationPermission()) {
+                buildLocationRequest()
+                buildLocationCallback()
 
                 fusedLocationProviderClient = LocationServices.getFusedLocationProviderClient(this)
-//                fusedLocationProviderClient.requestLocationUpdates(locationRequest, locationCallback, Looper.myLooper())
+                fusedLocationProviderClient.requestLocationUpdates(locationRequest, locationCallback, Looper.myLooper())
+            }
+        } else {
+            buildLocationRequest()
+            buildLocationCallback()
 
+            fusedLocationProviderClient = LocationServices.getFusedLocationProviderClient(this)
+            fusedLocationProviderClient.requestLocationUpdates(locationRequest, locationCallback, Looper.myLooper())
+        }
         menu.setOnNavigationItemSelectedListener { item ->
             when (item.itemId) {
                 R.id.action_bike -> nearByPlace("bengkel")
